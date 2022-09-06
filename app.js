@@ -234,66 +234,66 @@ var usersList = [
 var divOfList = document.getElementById("userList");
 
 // filtering array of object by using (var in loop)
+
 for (var key in usersList) {
 
-    // if (typeof (usersList[key].address) === "object") {
-    //     console.log((usersList[key].address))
-    // }
-    // if (typeof (usersList[key].company) === "object") {
-    //     console.log((usersList[key].company))
-    // }
     // creating main div
     var div = document.createElement('div')
     div.setAttribute("class", "list")
     div.setAttribute("key", usersList[key].id)
+
     // creating user id in a parent
     var divId = document.createElement('div')
     divId.setAttribute("class", 'left-box')
     var spanId = document.createElement('span')
     var spanIdText = document.createTextNode(usersList[key].id + ":")
+
     // creating user name in a parent
     var divName = document.createElement('div')
     divName.setAttribute("class", 'center-box')
     var spanName = document.createElement('span')
     var spanNameText = document.createTextNode(usersList[key].name)
+
     //creating a button which is getting detail of sepecific data
     var btn = document.createElement('button')
     btn.setAttribute("onClick", `details(${usersList[key].id})`)
     var btnText = document.createTextNode('Details')
+
     // creating id in a DOM list
     spanId.appendChild(spanIdText)
     divId.appendChild(spanId)
     div.appendChild(divId)
+
     // creating name of users in a DOM list
     spanName.appendChild(spanNameText)
     divName.appendChild(spanName)
     div.appendChild(divName)
+
     // adding button in dom list
     btn.appendChild(btnText)
     div.appendChild(btn)
 
-
     divOfList.appendChild(div)
 }
 
+var mh = document.getElementById("modalheader");
+
 function details(el) {
 
-    console.log(el)
-    console.log(usersList)
     var ul = document.createElement('ul');
 
     for (var key in usersList) {
-        // console.log(usersList[key].id)
         if (usersList[key].id === el) {
-            console.log("inside if", el);
-            // alert(usersList[key].name + '\n' +
-            //     usersList[key].username + '\n'
-            // )
 
+            var mb = document.getElementById("modalbody");
 
+            mb.innerText = "";
 
-            var mb = document.getElementById("modalbody")
+            var mhead = document.getElementById("h2");
+            mhead.innerText = "Details of: " + usersList[key].name;
 
+            var mfoot = document.getElementById("h3");
+            mfoot.innerHTML= "<em>Developed by: Nasir Raza</em>";
 
             var liId = document.createElement('li');
             var liTextId = document.createTextNode("ID: " + usersList[key].id);
@@ -365,8 +365,6 @@ function details(el) {
 
             liCmBs.appendChild(liTextCmBs);
 
-
-
         }
 
     }
@@ -387,8 +385,6 @@ function details(el) {
     mb.appendChild(ul);
 
     modal.style.display = "block";
-
-
 }
 
 var modal = document.getElementById("myModal");
@@ -396,11 +392,4 @@ var span = document.getElementsByClassName("close")[0];
 
 span.onclick = function () {
     modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
 }
